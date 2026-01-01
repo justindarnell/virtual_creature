@@ -180,6 +180,7 @@ MonoBehaviour:
   creatureView: {fileID: 1103}
   hungerRatePerSecond: 0.015
   fatigueRatePerSecond: 0.01
+  urgentDriveThreshold: 0.7
   movementFatiguePerSecond: 0.02
   eatReduction: 0.4
   sleepReduction: 0.5
