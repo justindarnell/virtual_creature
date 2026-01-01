@@ -1,0 +1,16 @@
+{
+  "name": "VirtualLife.UnityAdapter",
+  "rootNamespace": "VirtualLife.UnityAdapter",
+  "references": [
+    "VirtualLife.SimCore"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
