@@ -31,6 +31,8 @@ namespace VirtualLife.UnityAdapter
         [SerializeField] private float interactDistance = 0.4f;
 
         private readonly List<WorldObject> _worldObjects = new List<WorldObject>();
+        private readonly List<FoodView> _foods = new List<FoodView>();
+        private readonly List<BedView> _beds = new List<BedView>();
         private SimWorld _world;
         private SimCreature _creature;
         private SimConfig _config;
@@ -98,17 +100,67 @@ namespace VirtualLife.UnityAdapter
         {
             _worldObjects.Clear();
             var id = 0;
-            foreach (var food in FindObjectsOfType<FoodView>())
+            foreach (var food in _foods)
             {
+                if (food == null)
+                {
+                    continue;
+                }
+
                 _worldObjects.Add(new WorldObject(id++, WorldObjectType.Food, new Vec2(food.transform.position.x, food.transform.position.y)));
             }
 
-            foreach (var bed in FindObjectsOfType<BedView>())
+            foreach (var bed in _beds)
             {
+                if (bed == null)
+                {
+                    continue;
+                }
+
                 _worldObjects.Add(new WorldObject(id++, WorldObjectType.Bed, new Vec2(bed.transform.position.x, bed.transform.position.y)));
             }
 
             _world.SetObjects(_worldObjects);
+        }
+
+        public void RegisterFood(FoodView food)
+        {
+            if (food == null || _foods.Contains(food))
+            {
+                return;
+            }
+
+            _foods.Add(food);
+        }
+
+        public void UnregisterFood(FoodView food)
+        {
+            if (food == null)
+            {
+                return;
+            }
+
+            _foods.Remove(food);
+        }
+
+        public void RegisterBed(BedView bed)
+        {
+            if (bed == null || _beds.Contains(bed))
+            {
+                return;
+            }
+
+            _beds.Add(bed);
+        }
+
+        public void UnregisterBed(BedView bed)
+        {
+            if (bed == null)
+            {
+                return;
+            }
+
+            _beds.Remove(bed);
         }
     }
 }
